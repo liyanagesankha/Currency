@@ -36,7 +36,7 @@ AllCurrency.event = (function () {
             requestType = CurrencyManager.config.requestType.get,
             dataType = CurrencyManager.config.serviceDataType.json,
             callSuccessMethod = AllCurrency.render.bindAllCurrencyDataByPageIndex,
-            data = { pageNumber: self.pageNumber() };
+            data = { pageNumber: self.pageNumber(), itemPerPage: self.itemPerPage };
         CurrencyManager.webService.call(serviceMethod, requestType, dataType, data, callSuccessMethod, null);
     }
 
@@ -56,6 +56,7 @@ AllCurrency.dataManager = (function () {
         self.itemCollection = ko.observableArray();
         self.itemCollection.removeAll();
         self.pageNumber = ko.observable(0);
+        self.itemPerPage = 5;
         self.displayPageNumber = ko.computed(function () {
             return self.pageNumber() + 1;
         });
@@ -67,7 +68,7 @@ AllCurrency.dataManager = (function () {
 
         //visibility of next icon
         self.hasNext = ko.computed(function () {
-            return self.itemCollection().length === 3;
+            return self.itemCollection().length === self.itemPerPage;
         });
 
         //Click event of next

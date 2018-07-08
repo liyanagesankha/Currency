@@ -21,10 +21,10 @@ namespace Currency.WebAPI.Controllers
         /// <param name="pageNumber"></param>
         /// <returns></returns>
         [ResponseType(typeof(web_dis_rates))]
-        public async Task<IHttpActionResult> Get(int pageNumber)
+        public async Task<IHttpActionResult> Get(int pageNumber, int itemPerPage)
         {
             //Call to helper
-            var ratesDataSet = await Helper.GetForexRates(pageNumber);
+            var ratesDataSet = await Helper.GetForexRates(pageNumber, itemPerPage);
 
             //Return the response
             if (ratesDataSet == null)

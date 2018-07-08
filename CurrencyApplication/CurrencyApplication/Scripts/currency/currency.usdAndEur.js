@@ -35,7 +35,7 @@ UsdAndEurCurrency.event = (function () {
             requestType = CurrencyManager.config.requestType.get,
             dataType = CurrencyManager.config.serviceDataType.json,
             callSuccessMethod = UsdAndEurCurrency.render.bindUsdAndEurCurrencyData,
-            data = { pageNumber: -1 };
+            data = { pageNumber: -1, itemPerPage: -1 };
         CurrencyManager.webService.call(serviceMethod, requestType, dataType, data, callSuccessMethod, null);
     }
 

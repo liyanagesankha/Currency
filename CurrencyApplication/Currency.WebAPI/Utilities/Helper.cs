@@ -1,4 +1,5 @@
 ﻿using Currency.WebAPI.Models;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
@@ -9,6 +10,28 @@ namespace Currency.WebAPI.Utilities
 {
     public class Helper
     {
+        
+        /// <summary>
+        /// Field to hold currency rate URL
+        /// </summary>
+        private static string currencyServiceUrl = string.Empty;
+
+        /// <summary>
+        /// Property to Get Currency Service URL
+        /// </summary>
+        public static string CurrencyServiceUrl
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(currencyServiceUrl))
+                {
+                    var appSettings = ConfigurationManager.AppSettings;
+                    currencyServiceUrl = appSettings["currencyRatesUrl"] ?? string.Empty;
+                }
+                return currencyServiceUrl;
+            }
+        }
+
         /// <summary>
         /// Get selected FOREX rates
         /// </summary>
@@ -21,7 +44,7 @@ namespace Currency.WebAPI.Utilities
             HttpClient client = new HttpClient();
            
             //Asynchronously invoke the FOREX service end
-            var stream = await client.GetStreamAsync("https://www.forex.se/ratesxml.asp?id=492");
+            var stream = await client.GetStreamAsync(CurrencyServiceUrl);
             StreamReader streamReader = new StreamReader(stream);
             
             //Get web_dis_rates by stream reader 
@@ -38,5 +61,7 @@ namespace Currency.WebAPI.Utilities
             //return selected currency rates
             return rates;
         }
+
+        
     }
 }

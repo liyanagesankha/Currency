@@ -17,10 +17,11 @@ namespace Currency.WebAPI
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
-                routeTemplate: "api/{controller}/{pageNumber}",
-                defaults: new { pageNumber = RouteParameter.Optional }
+                routeTemplate: "api/{controller}/{pageNumber}/{itemPerPage}",
+                defaults: new { pageNumber=RouteParameter.Optional, itemPerPage = RouteParameter.Optional }
             );
 
+            //Enable cross domain access for all origins and methods
             EnableCorsAttribute enableCorsAttribute = new EnableCorsAttribute("*", "*", "*");
             config.EnableCors(enableCorsAttribute);
         }
