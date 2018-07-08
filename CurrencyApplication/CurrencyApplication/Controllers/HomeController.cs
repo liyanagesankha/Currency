@@ -12,7 +12,7 @@ namespace CurrencyApplication.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "All Currencies Details.";
+            ViewBag.Message = "All Currencies Details.";            
             return View();
         }
 

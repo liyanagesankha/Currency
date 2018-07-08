@@ -56,7 +56,7 @@ AllCurrency.dataManager = (function () {
         self.itemCollection = ko.observableArray();
         self.itemCollection.removeAll();
         self.pageNumber = ko.observable(0);
-        self.itemPerPage = 5;
+        self.itemPerPage = 3;
         self.displayPageNumber = ko.computed(function () {
             return self.pageNumber() + 1;
         });
