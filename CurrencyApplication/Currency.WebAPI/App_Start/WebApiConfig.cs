@@ -22,7 +22,6 @@ namespace Currency.WebAPI
             );
 
             //Enable cross domain access for all origins and methods
-            //
             EnableCorsAttribute enableCorsAttribute = new EnableCorsAttribute("*", "*", "*");
             config.EnableCors(enableCorsAttribute);
         }
