@@ -1,0 +1,67 @@
+﻿
+<h3>@ViewBag.Message</h3>
+
+<div id="allCurrencyDisplayDiv">
+
+    <div class="divTable">
+
+        @*table headers*@
+        <div class="divHeading">
+            <div class="divCell">
+                <p>Code</p>
+            </div>
+            <div class="divCell">
+                <p>Name</p>
+            </div>
+            <div class="divCell">
+                <p>Buy Cash</p>
+            </div>
+            <div class="divCell">
+                <p>Sell Cash</p>
+            </div>
+        </div>
+
+        @*table rows*@
+        <!-- ko foreach: itemCollection -->
+        <div class="divRow">
+            <div class="divCell">
+                <p data-bind="text: Code"></p>
+            </div>
+            <div class="divCell">
+                <p data-bind="text: Name"></p>
+            </div>
+            <div class="divCell divCellCurrency">
+                <p data-bind="text: BuyCash"></p>
+            </div>
+            <div class="divCell divCellCurrency">
+                <p data-bind="text: SellCash"></p>
+            </div>
+        </div>
+        <!-- /ko -->
+    </div>
+
+    @*pager*@
+    <div class="pager">
+        <a href="#" class="previous" data-bind="click: previous, visible: hasPrevious">&lt;</a>
+        <span class="current" data-bind="text: displayPageNumber"></span>
+        <a href="#" class="next" data-bind="click: next, visible: hasNext">&gt;</a>
+    </div>
+
+    <div class="alert alert-info" style="display:none" data-bind="visible: dataProcessing">
+        <strong>Data is processing...</strong>
+    </div>
+    <div class="alert alert-danger" style="display:none" data-bind="visible: errorOccurred">
+        <strong>Error occurred.</strong> Please see the console log for more details.
+    </div>
+</div>
+
+
+@section scripts{
+    @Scripts.Render("~/bundles/knockout")
+    @Scripts.Render("~/Scripts/currency/currency.manager.js")
+    @Scripts.Render("~/Scripts/currency/currency.all.js")
+}
+
+@section customStyles{
+    @Styles.Render("~/Content/currency/currency.all.css")
+}

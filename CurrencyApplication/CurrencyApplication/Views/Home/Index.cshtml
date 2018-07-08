@@ -1,0 +1,45 @@
+﻿<h2>@ViewBag.Title.</h2>
+
+
+<input id="usdAndEurDataDisplayButton" type="button" data-bind="click: getUsdAndEurCurrency" value="Display USD and EUR Currency Data" />
+<div id="usdAndEurDataDisplayDiv" style="display:none">
+    <div id="usdCurrencyDataDiv">
+        <h4>USD Currency Data:</h4>
+        <ul>
+            <li>Code: <span data-bind="text: usdCurrencyData().Code"></span></li>
+            <li>Name: <span data-bind="text: usdCurrencyData().Name"></span></li>
+            <li>Buy cash: <span data-bind="text: usdCurrencyData().BuyCash"></span></li>
+            <li>Sell cash: <span data-bind="text: usdCurrencyData().SellCash"></span></li>
+        </ul>
+    </div>
+    <div id="eurCurrencyDataDiv">
+        <h4>EUR Currency Data:</h4>
+        <ul>
+            <li>Code: <span data-bind="text: eurCurrencyData().Code"></span></li>
+            <li>Name: <span data-bind="text: eurCurrencyData().Name"></span></li>
+            <li>Buy cash: <span data-bind="text: eurCurrencyData().BuyCash"></span></li>
+            <li>Sell cash: <span data-bind="text: eurCurrencyData().SellCash"></span></li>
+        </ul>
+    </div>
+</div>
+
+<div class="alert alert-info" style="display:none" data-bind="visible: dataProcessing">
+    <strong>Data is processing...</strong>
+</div>
+
+<div class="alert alert-danger" style="display:none" data-bind="visible: errorOccurred">
+    <strong>Error occurred.</strong> Please see the console log for more details.
+</div>
+
+<br />
+@Html.ActionLink("View All Currencies", "About", "Home")
+
+
+
+
+@section scripts{
+    @Scripts.Render("~/bundles/knockout")
+    @Scripts.Render("~/Scripts/currency/currency.manager.js")
+    @Scripts.Render("~/Scripts/currency/currency.usdAndEur.js")
+}
+
