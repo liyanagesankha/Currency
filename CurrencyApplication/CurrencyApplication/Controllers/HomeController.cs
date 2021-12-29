@@ -22,5 +22,12 @@ namespace CurrencyApplication.Controllers
             ViewBag.Message = "My Contact Details.";
             return View();
         }
+
+        public ActionResult Contact1()
+        {
+            ViewBag.Title = "Contact Me";
+            ViewBag.Message = "My Contact Details.";
+            return View();
+        }
     }
 }
